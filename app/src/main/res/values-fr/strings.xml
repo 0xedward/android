@@ -87,6 +87,7 @@
     <string name="settings_sync_interval_calendars">Interval de synchronisation des agendas</string>
     <string-array name="settings_sync_interval_names">
         <item>Manuellement</item>
+        <item>Every 5 minutes</item>
         <item>Toutes les 15 minutes</item>
         <item>Toutes les heures</item>
         <item>Toutes les 2 heures</item>

@@ -4,6 +4,7 @@ import android.accounts.AccountManager
 import android.content.ContentResolver
 import android.content.Context
 import android.provider.CalendarContract
+import android.util.Log
 import at.bitfire.ical4android.TaskProvider
 import com.etesync.syncadapter.AccountSettings
 import com.etesync.syncadapter.App
@@ -44,6 +45,7 @@ class TaskProviderHandling {
                     if (calendarSyncInterval == null) {
                         // do nothing atm
                     } else if (ContentResolver.getIsSyncable(account, provider.authority) <= 0) {
+                        Log.d("updateTaskSync", calendarSyncInterval.toString())
                         ContentResolver.setIsSyncable(account, provider.authority, 1)
                         settings.setSyncInterval(provider.authority, calendarSyncInterval)
                     }

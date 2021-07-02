@@ -87,6 +87,7 @@
     <string name="settings_sync_interval_calendars">日历自动同步间隔</string>
     <string-array name="settings_sync_interval_names">
         <item>手动同步</item>
+        <item>Every 5 minutes</item>
         <item>每 15 分钟</item>
         <item>每 1 小时</item>
         <item>每 2 小时</item>

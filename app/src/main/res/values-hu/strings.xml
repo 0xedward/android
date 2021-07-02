@@ -87,6 +87,7 @@
   <string name="settings_sync_interval_calendars">Naptárszinkronizálás sűrűsége</string>
   <string-array name="settings_sync_interval_names">
     <item>Manuális</item>
+    <item>Every 5 minutes</item>
     <item>15 percenként</item>
     <item>Óránként</item>
     <item>2 óránként</item>

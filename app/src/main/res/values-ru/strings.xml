@@ -24,6 +24,7 @@
     <string name="settings_sync_interval_calendars">Период синхронизации календарей</string>
     <string-array name="settings_sync_interval_names">
         <item>Вручную</item>
+        <item>Every 5 minutes</item>
         <item>Каждые 15 минут</item>
         <item>Каждый час</item>
         <item>Каждые 2 часа</item>

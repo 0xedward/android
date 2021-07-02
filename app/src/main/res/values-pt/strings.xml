@@ -23,6 +23,7 @@
   <string name="settings_sync_interval_calendars">Intervalo de sincronização do calendário</string>
   <string-array name="settings_sync_interval_names">
     <item>Apenas manualmente</item>
+    <item>Every 5 minutes</item>
     <item>A cada 15 minutos</item>
     <item>A cada hora</item>
     <item>A cada 2 horas</item>

@@ -74,6 +74,7 @@
   <string name="settings_sync_interval_calendars">Synkroniseringsinterval for kalender</string>
   <string-array name="settings_sync_interval_names">
     <item>Kun manuelt</item>
+    <item>Every 5 minutes</item>
     <item>Hver 15. minut</item>
     <item>En gang i timen</item>
     <item>En gang hver 2. time</item>

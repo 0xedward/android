@@ -316,7 +316,7 @@
     <string-array name="settings_sync_interval_seconds" translateable="false">
         <item>-1</item>
         <item>300</item>
-        <item>900</item>
+        <item>500</item>
         <item>3600</item>
         <item>7200</item>
         <item>14400</item>

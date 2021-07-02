@@ -81,6 +81,7 @@
     <string name="settings_sync_interval_calendars">Agenda\'s verversen</string>
     <string-array name="settings_sync_interval_names">
         <item>Alleen handmatig</item>
+        <item>Every 5 minutes</item>
         <item>Elke 15 minuten</item>
         <item>Elk uur</item>
         <item>Elke 2 uur</item>

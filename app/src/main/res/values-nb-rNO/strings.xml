@@ -239,6 +239,7 @@
     <string name="settings_sync_summary_not_available">Ikke tilgjengelig</string>
     <string-array name="settings_sync_interval_names">
         <item>Bare manuelt</item>
+        <item>Every 5 minutes</item>
         <item>Hvert 15. minutt</item>
         <item>Hver time</item>
         <item>Annenhver time</item>

@@ -23,6 +23,7 @@
   <string name="settings_sync_interval_calendars">Інтервал синхронізації календарів</string>
   <string-array name="settings_sync_interval_names">
     <item>Лише вручну</item>
+    <item>Every 5 minutes</item>
     <item>Кожних 15 хвилин</item>
     <item>Щогодини</item>
     <item>Кожних 2 години</item>

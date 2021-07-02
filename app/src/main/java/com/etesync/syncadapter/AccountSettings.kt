@@ -17,6 +17,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import at.bitfire.vcard4android.ContactsStorageException
 import at.bitfire.vcard4android.GroupMethod
 import com.etesync.journalmanager.Crypto
@@ -153,6 +154,12 @@ constructor(internal val context: Context, internal val account: Account) {
 
         if (ContentResolver.getSyncAutomatically(account, authority)) {
             val syncs = ContentResolver.getPeriodicSyncs(account, authority)
+            for (i in syncs) {
+                Log.d("syncs", i.period.toString())
+            }
+            if (syncs.isNotEmpty()) {
+                Log.d("getSyncInterval", syncs[0].period.toString())
+            }
             return if (syncs.isEmpty())
                 SYNC_INTERVAL_MANUALLY
             else
@@ -162,11 +169,17 @@ constructor(internal val context: Context, internal val account: Account) {
     }
 
     fun setSyncInterval(authority: String, seconds: Long) {
+        Log.d("seconds-SetSyncInterval", seconds.toString())
         if (seconds == SYNC_INTERVAL_MANUALLY) {
             ContentResolver.setSyncAutomatically(account, authority, false)
         } else {
             ContentResolver.setSyncAutomatically(account, authority, true)
-            ContentResolver.addPeriodicSync(account, authority, Bundle(), seconds)
+            // Minimum interval is 15 minutes - https://developer.android.com/reference/android/content/ContentResolver#addPeriodicSync(android.accounts.Account,%20java.lang.String,%20android.os.Bundle,%20long)
+            ContentResolver.addPeriodicSync(account, authority, Bundle(), seconds) //NOT ACTUALLY SETTING THE PROPER VALUE
+            val syncs = ContentResolver.getPeriodicSyncs(account, authority)
+            for (i in syncs) {
+                Log.d("after update", i.period.toString())
+            }
         }
     }
 

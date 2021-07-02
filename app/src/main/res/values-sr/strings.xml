@@ -87,6 +87,7 @@
   <string name="settings_sync_interval_calendars">Интервал синх. календара</string>
   <string-array name="settings_sync_interval_names">
     <item>Само ручно</item>
+    <item>Every 5 minutes</item>
     <item>Сваких 15 минута</item>
     <item>Сваког сата</item>
     <item>Свака 2 сата</item>

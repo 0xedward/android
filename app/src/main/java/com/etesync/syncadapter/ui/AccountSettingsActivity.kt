@@ -16,6 +16,7 @@ import android.content.SyncStatusObserver
 import android.os.Bundle
 import android.provider.CalendarContract
 import android.text.TextUtils
+import android.util.Log
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.NavUtils
@@ -131,14 +132,22 @@ class AccountSettingsFragment() : PreferenceFragmentCompat(), LoaderManager.Load
 
         val prefSync = findPreference("sync_interval") as ListPreference
         val syncInterval = settings.getSyncInterval(CalendarContract.AUTHORITY) // Calendar is the baseline interval
+        Log.d("syncInterval", syncInterval.toString())
         if (syncInterval != null) {
+            Log.d("before prefSync", prefSync.toString())
             prefSync.value = syncInterval.toString()
+            Log.d("after prefSync", prefSync.toString())
+//                    Throwable().printStackTrace() //print this stack trace elsewhere too
+
             if (syncInterval == AccountSettings.SYNC_INTERVAL_MANUALLY)
                 prefSync.setSummary(R.string.settings_sync_summary_manually)
             else
+                //settings_sync_summary_periodically
+                // Log.d("summaryText", prefSync.entry as String)
                 prefSync.summary = getString(R.string.settings_sync_summary_periodically, prefSync.entry)
             prefSync.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
                 val newInterval = java.lang.Long.parseLong(newValue as String)
+                Log.d("newInterval", newInterval.toString())
                 settings.setSyncInterval(App.addressBooksAuthority, newInterval)
                 settings.setSyncInterval(CalendarContract.AUTHORITY, newInterval)
                 TASK_PROVIDERS.forEach {
@@ -239,6 +248,7 @@ class LegacyAccountSettingsFragment : PreferenceFragmentCompat(), LoaderManager.
                 prefSync.summary = getString(R.string.settings_sync_summary_periodically, prefSync.entry)
             prefSync.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
                 val newInterval = java.lang.Long.parseLong(newValue as String)
+                Log.d("newInterval", newInterval.toString())
                 settings.setSyncInterval(App.addressBooksAuthority, newInterval)
                 settings.setSyncInterval(CalendarContract.AUTHORITY, newInterval)
                 TASK_PROVIDERS.forEach {

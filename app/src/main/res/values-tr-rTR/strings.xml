@@ -74,6 +74,7 @@
     <string name="settings_sync_interval_calendars">Takvimler senk. aralığı</string>
     <string-array name="settings_sync_interval_names">
         <item>Sadece elle</item>
+        <item>Every 5 minutes</item>
         <item>Her 15 dakikada bir</item>
         <item>Her saatte bir</item>
         <item>Her 2 saatte bir</item>
