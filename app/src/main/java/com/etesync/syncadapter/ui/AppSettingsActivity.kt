@@ -8,10 +8,15 @@
 
 package com.etesync.syncadapter.ui
 
+import android.app.Activity
 import android.content.Intent
 import android.os.AsyncTask
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import android.view.Display
+import android.view.SurfaceView
+import android.view.WindowManager
 import androidx.preference.*
 import at.bitfire.cert4android.CustomCertManager
 import com.etesync.syncadapter.App
@@ -48,6 +53,7 @@ class AppSettingsActivity : BaseActivity() {
         internal lateinit var prefResetHints: Preference
         internal lateinit var prefOverrideProxy: SwitchPreferenceCompat
         internal lateinit var prefDistrustSystemCerts: SwitchPreferenceCompat
+        internal lateinit var prefBlockScreenshots: SwitchPreferenceCompat
 
         internal lateinit var prefProxyHost: EditTextPreference
         internal lateinit var prefProxyPort: EditTextPreference
@@ -144,6 +150,12 @@ class AppSettingsActivity : BaseActivity() {
                 }
             }
 
+            prefBlockScreenshots = findPreference("block_screenshots") as SwitchPreferenceCompat
+            prefBlockScreenshots.isChecked = settings.getBoolean(App.BLOCK_SCREENSHOTS, true)
+            prefBlockScreenshots.onPreferenceChangeListener = Preference.OnPreferenceChangeListener { _, newValue ->
+                setBlockScreenshots(newValue as Boolean)
+                true
+            }
 
             val prefChangeNotification = findPreference("show_change_notification") as SwitchPreferenceCompat
             prefChangeNotification.isChecked = context!!.defaultSharedPreferences.getBoolean(App.CHANGE_NOTIFICATION, true)
@@ -161,6 +173,8 @@ class AppSettingsActivity : BaseActivity() {
                 resetHints()
             else if (preference === prefDistrustSystemCerts)
                 setDistrustSystemCerts(preference.isChecked)
+            else if (preference === prefBlockScreenshots)
+                setBlockScreenshots(preference.isChecked)
             else
                 return false
             return true
@@ -173,6 +187,24 @@ class AppSettingsActivity : BaseActivity() {
 
         private fun setDistrustSystemCerts(distrust: Boolean) {
             settings.putBoolean(App.DISTRUST_SYSTEM_CERTIFICATES, distrust)
+        }
+
+        private fun setBlockScreenshots(block: Boolean) {
+            settings.putBoolean(App.BLOCK_SCREENSHOTS, block)
+            // TODO getWindow() needs to be called under Activity not PreferenceFragmentCompat
+            //https://stackoverflow.com/questions/9822076/how-do-i-prevent-android-taking-a-screenshot-when-my-app-goes-to-the-background
+            if (block) {
+                // TODO Seems to block viewing from recents list, but only on SettingsActivity - figure out how to do this on all screens
+                // TODO this needs to be added to BaseActivity - Flags
+//                window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+                requireActivity().window.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
+                Log.d("screenshotLog", block.toString())
+            }
+            else {
+//                requireActivity().window.clearFlags(WindowManager.LayoutParams.FLAG_SECURE);
+                Log.d("screenshotLog", block.toString())
+            }
+
         }
 
         private fun resetCertificates() {

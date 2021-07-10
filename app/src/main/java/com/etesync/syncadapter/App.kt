@@ -243,6 +243,7 @@ class App : Application() {
 
     companion object {
         val DISTRUST_SYSTEM_CERTIFICATES = "distrustSystemCerts"
+        val BLOCK_SCREENSHOTS = "blockScreenshots"
         val LOG_TO_EXTERNAL_STORAGE = "logToExternalStorage"
         val OVERRIDE_PROXY = "overrideProxy"
         val OVERRIDE_PROXY_HOST = "overrideProxyHost"
