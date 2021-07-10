@@ -71,6 +71,11 @@
             android:title="@string/app_settings_reset_certificates"
             android:summary="@string/app_settings_reset_certificates_summary"/>
 
+        <SwitchPreferenceCompat
+            android:key="block_screenshots"
+            android:title="@string/app_settings_block_screenshots"
+            android:summary="@string/app_settings_block_screenshots_summary"/>
+
     </PreferenceCategory>
 
     <PreferenceCategory android:title="@string/app_settings_debug">
